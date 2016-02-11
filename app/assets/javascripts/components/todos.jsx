@@ -11,6 +11,12 @@ Todos = React.createClass({
     }
   },
 
+  newTodo(todoItem) {
+    var todos = this.state.todos.slice();
+    todos.push(todoItem);
+    this.setState({todos: todos});
+  },
+
   render() {
     return (
       <div className="records">
@@ -18,6 +24,7 @@ Todos = React.createClass({
         {this.state.todos.map((function(todo) {
           return <TodoItem todo={todo} key={todo.id}></TodoItem>
         }))}
+        <TodoForm handleNewTodo={this.newTodo}></TodoForm>
       </div>
     )
   }

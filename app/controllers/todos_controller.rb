@@ -4,4 +4,22 @@ class TodosController < ApplicationController
     render :index
   end
 
+  def create
+      @todo = Todo.new(todo_params)
+      @todo.user_id = 4
+      #@todo.user_id = current_user.id
+
+      if @todo.save
+        render json: @todo
+      else
+        render json: @todo.errors, status: :unprocessable_entity
+      end
+    end
+
+    private
+
+      def todo_params
+        params.require(:todo).permit(:title, :pomodoros)
+      end
+
 end
