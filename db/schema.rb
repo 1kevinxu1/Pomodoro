@@ -17,18 +17,25 @@ ActiveRecord::Schema.define(version: 20160210201220) do
   enable_extension "plpgsql"
 
   create_table "todos", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.integer  "pomodoros"
+    t.integer  "user_id",    null: false
+    t.boolean  "finished?",  null: false
+    t.string   "title",      null: false
+    t.integer  "pomodoros",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "todos", ["title"], name: "index_todos_on_title", using: :btree
+  add_index "todos", ["user_id"], name: "index_todos_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password"
+    t.string   "username",   null: false
+    t.string   "password",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["password"], name: "index_users_on_password", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

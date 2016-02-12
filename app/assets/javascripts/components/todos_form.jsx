@@ -1,8 +1,7 @@
 TodoForm = React.createClass({
   getInitialState () {
     return {
-      title: '',
-      pomodoros: ''
+      title: ''
     }
   },
 
@@ -14,15 +13,19 @@ TodoForm = React.createClass({
 
   handleSubmit(e) {
     e.preventDefault();
-    $.post('', {todo: this.state}, function(data) {
+    var data = {todo: this.state};
+    // New todo items always start at 0 pomodoros
+    data.todo.pomodoros = 0;
+    data.todo["finished?"] = false;
+    $.post('', data, function(data) {
       this.props.handleNewTodo(data);
-      this.setState({title: "", pomodoros: ""});
+      this.setState({title: ""});
       alert("New Todo!");
     }.bind(this));
   },
 
   validInputs() {
-    return this.state.title !== "" && Number.isInteger(parseInt(this.state.pomodoros));
+    return this.state.title !== "";
   },
 
   render () {
@@ -31,10 +34,6 @@ TodoForm = React.createClass({
         <div className="form-group">
             <input type="text" className="form-control" placeholder="Name"
             name="title" value={this.state.title} onChange={this.handleChange}/>
-        </div>
-        <div className="form-group">
-            <input type="text" className="form-control" placeholder="Estimated Pomodoros"
-             name="pomodoros" value={this.state.pomodoros} onChange={this.handleChange}/>
         </div>
         <button type="submit" className="btn btn-primary" disabled={!this.validInputs()}>Create Todo!</button>
       </form>
