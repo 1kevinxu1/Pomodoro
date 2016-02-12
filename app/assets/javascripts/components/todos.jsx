@@ -24,6 +24,19 @@ Todos = React.createClass({
     this.setState(newState);
   },
 
+  updateItem(oldTodo, newProps) {
+    var todos = this.state.todos.slice();
+    var index = todos.indexOf(oldTodo);
+    var oldTodo = todos[index]
+    todos[index] = $.extend({}, oldTodo, newProps);
+    var newState = {};
+    newState["todos"] = todos;
+    if (this.state.selectedTodo === oldTodo) {
+      newState["selectedTodo"] = todos[index];
+    }
+    this.setState(newState);
+  },
+
   newTodo(todoItem) {
     var todos = this.state.todos.slice();
     todos.push(todoItem);
@@ -38,17 +51,21 @@ Todos = React.createClass({
     var key = this.state.selectedTodo ? this.state.selectedTodo.id : ""
     return (
       <div className="records">
-        <h2 className="title"> Todos </h2>
+        <h2 className="title"> Pomodoro TodoList! </h2>
         <div className="col-xs-6">
           <div className="todo-section">
-            <PomodoroTimer todo={this.state.selectedTodo} key={key} elapsed="10"/>
+            <PomodoroTimer todo={this.state.selectedTodo} key={key} updateItem={this.updateItem}/>
           </div>
         </div>
         <div className="col-xs-6 col-xs-6-offset">
           <div className="todo-section">
             <TodoForm handleNewTodo={this.newTodo}></TodoForm>
             {this.state.todos.map(function(todo) {
-              return <TodoItem todo={todo} key={todo.id} deleteItem={this.deleteItem} handleClick={this.selectTodo.bind(this, todo)}></TodoItem>
+              return <TodoItem todo={todo} key={todo.id}
+                               deleteItem={this.deleteItem}
+                               updateItem={this.updateItem}
+                               handleClick={this.selectTodo.bind(this, todo)}>
+                     </TodoItem>
             }, this)}
           </div>
         </div>

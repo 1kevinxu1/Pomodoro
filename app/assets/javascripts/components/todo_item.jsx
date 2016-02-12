@@ -1,28 +1,21 @@
 TodoItem = React.createClass({
   getInitialState() {
     return {
-        finished: this.props.todo["finished?"]
+        finished: this.props.todo["finished?"],
+        editing: false
     }
   },
 
-  handleChange(e) {
+  toggleFinished(e) {
     e.preventDefault();
+    var todo = {}
     var checked = e.target.checked;
-    $.ajax('todos/' + this.props.todo.id, {
-      data: {
-        todo: {
-          "finished?": checked
-        }
-      },
-      success: function(data) {
-        this.setState({finished: checked})
-      }.bind(this),
-      type: "PUT"
-    });
+    todo["finished?"] = checked;
+    var newState = {finished: checked}
+    this.updateTodo(todo, newState);
   },
 
   handleDelete(e) {
-    debugger;
     e.preventDefault();
     this.props.deleteItem(this.props.todo);
     var checked = e.target.checked;
@@ -31,13 +24,49 @@ TodoItem = React.createClass({
     });
   },
 
+  handleEdit(e) {
+    this.setState({editing: true});
+  },
+
+  handleSubmit(e) {
+    e.preventDefault();
+    var todo = {}
+    todo["title"] = $('#new-title').val();
+    var newState = {editing: false}
+    this.updateTodo(todo, newState);
+  },
+
+  updateTodo(newTodo, newState) {
+    debugger;
+    $.ajax('todos/' + this.props.todo.id, {
+      data: {
+        todo: newTodo
+      },
+      success: function(data) {
+        debugger;
+        this.props.updateItem(this.props.todo, newTodo);
+        this.setState(newState)
+      }.bind(this),
+      type: "PUT"
+    });
+  },
+
   render() {
-    return (
-      <div className="todo-list-item">
-          <input type="checkbox" id={this.props.todo.id} checked={this.state.finished} onChange={this.handleChange}/>
+    if (this.state.editing) {
+      return (
+        <form className="form-inline" onSubmit={this.handleSubmit}>
+          <input id="new-title" type="text" className="form-control new-todo" placeholder="Rename to..."/>
+        </form>
+      )
+    } else {
+      return (
+        <div className="todo-list-item">
+          <input type="checkbox" className="completed-checkbox" checked={this.state.finished} onChange={this.toggleFinished}/>
           <h4 className="todo-item-title" onClick={this.props.handleClick}>{this.props.todo.title}</h4>
-          <button className="btn btn-danger delete-item" onClick={this.handleDelete}>Delete</button>
-      </div>
-    )
+          <button className="btn btn-danger todo-item-button" onClick={this.handleDelete}>Delete</button>
+          <button className="btn btn-primary todo-item-button" onClick={this.handleEdit}>Edit</button>
+        </div>
+      )
+    }
   }
 });

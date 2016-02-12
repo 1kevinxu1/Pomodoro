@@ -43,18 +43,20 @@ PomodoroTimer = React.createClass({
     }
     var working = !this.state.working
     this.setState({elapsed: elapsed, pomodoros: pomodoros, working: working, timerRunning: false}, this.updatePomodoros);
-    debugger;
   },
 
   updatePomodoros() {
     if (this.props.todo) {
-      debugger;
+      var newTodo = {}
+      newTodo["pomodoros"] = this.state.pomodoros
       $.ajax('todos/' + this.props.todo.id, {
         data: {
-          todo: {
-            "pomodoros": this.state.pomodoros
-          }
+          todo: newTodo
         },
+        success: function(data) {
+          debugger;
+          this.props.updateItem(this.props.todo, newTodo);
+        }.bind(this),
         error: function(data) {
           alert("Something has gone very, very, wrong! PANIC MODE ACTIVATED");
         }.bind(this),
