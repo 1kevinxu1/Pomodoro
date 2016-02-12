@@ -85,3 +85,35 @@
 .working-tag {
   background-color: #449d44;
 }
+
+.new-todo {
+  width: 100% !important;
+}
+
+.finished-checkbox {
+  margin-left: 15px;
+}
+
+.todo-item-title {
+  display: inline-block;
+  margin: 0px 15px;
+}
+
+.delete-item {
+  padding: 3px 5px;
+  font-size: 11px;
+  display: inline-block;
+  float: right;
+}
+
+.todo-list-item {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 3px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.todo-list-item:hover {
+  background-color: #ddd;
+}

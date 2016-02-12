@@ -31,11 +31,9 @@ TodoForm = React.createClass({
   render () {
     return (
       <form className="form-inline" onSubmit={this.handleSubmit}>
-        <div className="form-group">
-            <input type="text" className="form-control" placeholder="Name of new todo"
+          <input type="text" className="form-control new-todo" placeholder="Name of new todo"
             name="title" value={this.state.title} onChange={this.handleChange}/>
-        </div>
-        <button type="submit" className="btn btn-primary" disabled={!this.validInputs()}>Add</button>
+        {/*<button type="submit" className="btn btn-primary" disabled={!this.validInputs()}>Add</button>*/}
       </form>
     )
   }

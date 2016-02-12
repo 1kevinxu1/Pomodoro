@@ -33,10 +33,10 @@ TodoItem = React.createClass({
 
   render() {
     return (
-      <div>
-          <p className="todo-item-title" onClick={this.props.handleClick}>{this.props.todo.title}</p>
-          <label><input className="inline" type="checkbox" checked={this.state.finished} onChange={this.handleChange}/>Finished?</label>
-          <button className="btn btn-danger inline" onClick={this.handleDelete}>Delete</button>
+      <div className="todo-list-item">
+          <input type="checkbox" id={this.props.todo.id} checked={this.state.finished} onChange={this.handleChange}/>
+          <h4 className="todo-item-title" onClick={this.props.handleClick}>{this.props.todo.title}</h4>
+          <button className="btn btn-danger delete-item" onClick={this.handleDelete}>Delete</button>
       </div>
     )
   }

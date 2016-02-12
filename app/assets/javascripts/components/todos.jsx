@@ -46,10 +46,10 @@ Todos = React.createClass({
         </div>
         <div className="col-xs-6 col-xs-6-offset">
           <div className="todo-section">
+            <TodoForm handleNewTodo={this.newTodo}></TodoForm>
             {this.state.todos.map(function(todo) {
               return <TodoItem todo={todo} key={todo.id} deleteItem={this.deleteItem} handleClick={this.selectTodo.bind(this, todo)}></TodoItem>
             }, this)}
-            <TodoForm handleNewTodo={this.newTodo}></TodoForm>
           </div>
         </div>
       </div>
