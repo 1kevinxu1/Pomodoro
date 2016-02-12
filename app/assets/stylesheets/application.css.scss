@@ -110,7 +110,7 @@
 }
 
 .todo-list-item {
-  margin: 5px;
+  margin: 5px 0px;
   padding: 5px;
   border-radius: 3px;
   -webkit-transition: all .5s;
@@ -119,4 +119,18 @@
 
 .todo-list-item:hover {
   background-color: #ddd;
+  cursor: pointer;
+}
+
+#new-title {
+  border: none;
+  border-bottom: 1px solid #999;
+  box-shadow: none;
+  border-radius: 0px;
+  width: calc(100% - 55px);
+}
+
+#new-title + button {
+  position: relative;
+  top: 7px;
 }

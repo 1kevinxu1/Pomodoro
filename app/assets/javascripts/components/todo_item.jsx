@@ -24,8 +24,8 @@ TodoItem = React.createClass({
     });
   },
 
-  handleEdit(e) {
-    this.setState({editing: true});
+  handleEdit(editingState) {
+    this.setState({editing: editingState});
   },
 
   handleSubmit(e) {
@@ -55,7 +55,8 @@ TodoItem = React.createClass({
     if (this.state.editing) {
       return (
         <form className="form-inline" onSubmit={this.handleSubmit}>
-          <input id="new-title" type="text" className="form-control new-todo" placeholder="Rename to..."/>
+          <input id="new-title" type="text" className="form-control" placeholder="Rename to..."/>
+          <button className="btn btn-danger todo-item-button" onClick={this.handleEdit.bind(this, false)}>Cancel</button>
         </form>
       )
     } else {
@@ -64,7 +65,7 @@ TodoItem = React.createClass({
           <input type="checkbox" className="completed-checkbox" checked={this.state.finished} onChange={this.toggleFinished}/>
           <h4 className="todo-item-title" onClick={this.props.handleClick}>{this.props.todo.title}</h4>
           <button className="btn btn-danger todo-item-button" onClick={this.handleDelete}>Delete</button>
-          <button className="btn btn-primary todo-item-button" onClick={this.handleEdit}>Edit</button>
+          <button className="btn btn-primary todo-item-button" onClick={this.handleEdit.bind(this, true)}>Edit</button>
         </div>
       )
     }
