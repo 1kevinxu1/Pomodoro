@@ -34,9 +34,9 @@ TodoItem = React.createClass({
   render() {
     return (
       <div>
-           <input type="checkbox" checked={this.state.finished} onChange={this.handleChange}/>
-           <p onClick={this.props.handleClick}>{this.props.todo.title}</p>
-           <button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
+          <p className="todo-item-title" onClick={this.props.handleClick}>{this.props.todo.title}</p>
+          <label><input className="inline" type="checkbox" checked={this.state.finished} onChange={this.handleChange}/>Finished?</label>
+          <button className="btn btn-danger inline" onClick={this.handleDelete}>Delete</button>
       </div>
     )
   }

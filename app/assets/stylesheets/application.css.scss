@@ -1,0 +1,87 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.title {
+    padding: 0px 15px;
+}
+
+.todo-section {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 180px;
+}
+
+.no-todo {
+  position: relative;
+  top: 45px;
+  text-align: center;
+  color: #ccc;
+}
+
+.no-todo > h5 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.no-todo > p {
+  font-weight: 400;
+}
+
+.col-xs-6-offset {
+  padding-left: 0px;
+}
+
+.timer-title {
+  width: 100%;
+  border-radius: 3px;
+  text-align: center;
+  border: 1px solid #999;
+  margin: 0px 0px 10px 0px;
+  padding: 5px 0px;
+  font-weight: 400;
+  background-color: #eee;
+  color: #555;
+}
+
+.timer-pomodoros {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.timer-timer {
+  margin: 10px 0px;
+  text-align: center;
+}
+
+.tag {
+  border-radius: 3px;
+  background-color: #aaa;
+  color: white;
+  display: inline-block;
+  float: right;
+  padding: 3px 5px;
+  position: relative;
+  top: -2px;
+}
+
+.working-tag {
+  background-color: #449d44;
+}

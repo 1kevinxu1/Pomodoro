@@ -40,13 +40,17 @@ Todos = React.createClass({
       <div className="records">
         <h2 className="title"> Todos </h2>
         <div className="col-xs-6">
-          <PomodoroTimer todo={this.state.selectedTodo} key={key} elapsed="10"/>
+          <div className="todo-section">
+            <PomodoroTimer todo={this.state.selectedTodo} key={key} elapsed="10"/>
+          </div>
         </div>
-        <div className="col-xs-6 col-xs-6-offset todos">
-          {this.state.todos.map(function(todo) {
-            return <TodoItem todo={todo} key={todo.id} deleteItem={this.deleteItem} handleClick={this.selectTodo.bind(this, todo)}></TodoItem>
-          }, this)}
-          <TodoForm handleNewTodo={this.newTodo}></TodoForm>
+        <div className="col-xs-6 col-xs-6-offset">
+          <div className="todo-section">
+            {this.state.todos.map(function(todo) {
+              return <TodoItem todo={todo} key={todo.id} deleteItem={this.deleteItem} handleClick={this.selectTodo.bind(this, todo)}></TodoItem>
+            }, this)}
+            <TodoForm handleNewTodo={this.newTodo}></TodoForm>
+          </div>
         </div>
       </div>
     )
