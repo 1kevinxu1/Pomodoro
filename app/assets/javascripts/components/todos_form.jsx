@@ -30,7 +30,7 @@ TodoForm = React.createClass({
   render () {
     return (
       <form className="form-inline" onSubmit={this.handleSubmit}>
-          <input type="text" className="form-control new-todo" placeholder="Add new todo"
+          <input type="text" className="form-control full-width" placeholder="Add new todo"
             name="title" value={this.state.title} onChange={this.handleChange}/>
       </form>
     )

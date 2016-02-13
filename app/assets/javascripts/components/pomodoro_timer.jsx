@@ -54,7 +54,6 @@ PomodoroTimer = React.createClass({
           todo: newTodo
         },
         success: function(data) {
-          debugger;
           this.props.updateItem(this.props.todo, newTodo);
         }.bind(this),
         error: function(data) {

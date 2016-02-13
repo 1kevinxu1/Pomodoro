@@ -9,7 +9,10 @@
 <body>
 
   <%= render partial: "layouts/header" %>
-  <%= yield %>
+  <div class="col-xs-2"></div>
+  <div class="col-xs-8 col-xs-2-offset user-auth-portal">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

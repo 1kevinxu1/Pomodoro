@@ -1,13 +1,12 @@
-
-<h1>Sign Up</h1>
+<h3 class="align-left">Sign Up</h3>
 
 <form action="/users" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label>Username<br>
-    <input name="user[username]" type="text"><br>
+  <label class="input-label">Username<br>
+    <input class="form-control full-width" name="user[username]" type="text"><br>
   </label><br>
-  <label>Password<br>
-    <input name="user[password]" type="password"><br>
+  <label class="input-label">Password<br>
+    <input class="form-control full-width" name="user[password]" type="password"><br>
   </label><br>
-  <input type="submit" value="Submit" class="btn btn-primary"><br>
+  <input type="submit" value="Submit" class="btn btn-primary submit-button"><br>
 </form>

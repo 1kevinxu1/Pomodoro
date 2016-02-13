@@ -37,13 +37,11 @@ TodoItem = React.createClass({
   },
 
   updateTodo(newTodo, newState) {
-    debugger;
     $.ajax('todos/' + this.props.todo.id, {
       data: {
         todo: newTodo
       },
       success: function(data) {
-        debugger;
         this.props.updateItem(this.props.todo, newTodo);
         this.setState(newState)
       }.bind(this),

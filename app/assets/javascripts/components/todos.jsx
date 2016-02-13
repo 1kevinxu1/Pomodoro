@@ -48,7 +48,6 @@ Todos = React.createClass({
   },
 
   render() {
-    debugger;
     var key = this.state.selectedTodo ? this.state.selectedTodo.id : ""
     return (
       <div className="records">
