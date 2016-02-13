@@ -28,12 +28,14 @@ TodoItem = React.createClass({
     this.setState({editing: editingState});
   },
 
-  handleSubmit(e) {
-    e.preventDefault();
-    var todo = {}
-    todo["title"] = $('#new-title').val();
-    var newState = {editing: false}
-    this.updateTodo(todo, newState);
+  handleKeyDown(e) {
+    if (e.key === 'Enter') {;
+      e.preventDefault();
+      var todo = {}
+      todo["title"] = $('#new-title').val();
+      var newState = {editing: false}
+      this.updateTodo(todo, newState);
+    }
   },
 
   updateTodo(newTodo, newState) {
@@ -53,7 +55,7 @@ TodoItem = React.createClass({
     if (this.state.editing) {
       return (
         <form className="form-inline" onSubmit={this.handleSubmit}>
-          <input id="new-title" type="text" className="form-control" placeholder="Rename to..."/>
+          <input id="new-title" type="text" className="form-control" placeholder="Rename to..." onKeyDown={this.handleKeyDown}/>
           <button className="btn btn-danger todo-item-button" onClick={this.handleEdit.bind(this, false)}>Cancel</button>
         </form>
       )
