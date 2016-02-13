@@ -1,14 +1,14 @@
 class TodosController < ApplicationController
+before_action :require_user
+
   def index
-    @todos = Todo.all
+    @todos = current_user.todos
     render :index
   end
 
   def create
       @todo = Todo.new(todo_params)
-      @todo.user_id = 4
-      #@todo.user_id = current_user.id
-
+      @todo.user_id = current_user.id
       if @todo.save
         render json: @todo
       else

@@ -19,7 +19,7 @@ TodoForm = React.createClass({
       var data = {todo: this.state};
       data.todo.pomodoros = 0;
       data.todo["finished?"] = false;
-      $.post('', data, function(data) {
+      $.post('/todos', data, function(data) {
         this.props.handleNewTodo(data);
         this.setState({title: ""});
         alert("New Todo Created!");

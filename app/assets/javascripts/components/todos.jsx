@@ -48,10 +48,10 @@ Todos = React.createClass({
   },
 
   render() {
+    debugger;
     var key = this.state.selectedTodo ? this.state.selectedTodo.id : ""
     return (
       <div className="records">
-        <h2 className="title"> Pomodoro TodoList! </h2>
         <div className="col-xs-6">
           <div className="todo-section">
             <PomodoroTimer todo={this.state.selectedTodo} key={key} updateItem={this.updateItem}/>
