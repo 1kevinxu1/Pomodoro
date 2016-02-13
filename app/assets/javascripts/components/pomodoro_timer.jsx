@@ -68,6 +68,7 @@ PomodoroTimer = React.createClass({
     var elapsed = this.state.elapsed - 1;
     if (elapsed === 0) {
       this.stopTimer();
+      alert("Your Time is Up!");
     } else {
       this.setState({elapsed: elapsed});
     }
