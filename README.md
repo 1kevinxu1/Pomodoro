@@ -3,6 +3,5 @@
 
 ## Stack
 This project uses Ruby/Rails full stack with some help from React to render certain client-side views.
-For example, the timer, and all the dashboard view logic is handled by React.
 
 [heroku link]: https://tranquil-atoll-33321.herokuapp.com/session/new
